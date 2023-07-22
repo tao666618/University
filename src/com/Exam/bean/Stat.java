@@ -1,17 +1,23 @@
 package com.Exam.bean;
 
+/**
+ * 该类用于存储考试统计信息
+ * 可以方便地获取或设置考试统计信息的各项属性，如分数比例、分数、考试时间等
+ * 在使用时，可以创建Stat对象，然后设置相应的属性值，或者获取已存储的属性值信息。
+ * tao
+ */
 public class Stat {
 	private int id;
 	private int radio_BL;// 单选分数比例
-	private int more_BL;
-	private int judge_BL;
-	private int read_BL;// 阅读分数比例 yezi2013-5-15
-	private int radio_FS;
-	private int more_FS;
-	private int judge_FS;
-	private int read_FS;// 阅读分数 yezi2013-5-15
+	private int more_BL;  //多选分数比例
+	private int judge_BL; // 判断题分数比例
+	private int read_BL;// 阅读分数比例
+	private int radio_FS; // 单选分数
+	private int more_FS; // 多选分数
+	private int judge_FS;// 判断题分数
+	private int read_FS;// 阅读分数
 	private int exam_time;// 考试时间
-	/* yezi2013-5-15*/
+
 	public int getRead_BL() {
 		return read_BL;
 	}

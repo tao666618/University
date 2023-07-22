@@ -15,6 +15,12 @@ import com.Exam.dao.*;
  *
  * @author  Administrator
  */
+
+/**
+ * 用于添加用户信息。
+ * 在该界面中，用户可以选择用户身份，
+ * 输入用户名和密码，并确认密码后，点击“添加”按钮将新用户信息添加到数据库中。
+ */
 public class AddFrame extends javax.swing.JFrame {
 
     /** Creates new form AddFrame */

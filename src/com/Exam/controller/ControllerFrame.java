@@ -22,6 +22,13 @@ import com.Exam.dao.FindGrade;
  *
  * @author Administrator
  */
+
+/**
+ * 主控制窗口
+ * 使用Java Swing 构建的
+ * GUI 组件
+ * tao
+ */
 public class ControllerFrame extends javax.swing.JFrame {// 主控制窗体
 
 	/** Creates new form ControllerFrame */

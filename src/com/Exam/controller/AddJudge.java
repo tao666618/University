@@ -15,6 +15,11 @@ import com.Exam.dao.FindQuestionDao;
  *
  * @author  Administrator
  */
+
+/**
+ * 表示添加判断题的界面窗体。
+ * tao
+ */
 public class AddJudge extends javax.swing.JFrame {// 增加判断
 
     /** Creates new form AddJudge */

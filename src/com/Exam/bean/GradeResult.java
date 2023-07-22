@@ -1,5 +1,8 @@
 package com.Exam.bean;
 
+/**
+ * 存储考试成绩结果的信息
+ */
 public class GradeResult {
 	private int id;
 	private String UserName;

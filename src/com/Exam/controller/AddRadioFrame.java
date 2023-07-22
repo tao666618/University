@@ -15,6 +15,11 @@ import com.Exam.dao.FindQuestionDao;
  *
  * @author  Administrator
  */
+
+/**
+ * 添加单选题的界面
+ * tao
+ */
 public class AddRadioFrame extends javax.swing.JFrame {// 单选题
 
     /** Creates new form AddRadioFrame */

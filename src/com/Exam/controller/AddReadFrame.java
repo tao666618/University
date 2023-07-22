@@ -15,6 +15,11 @@ import com.Exam.dao.FindQuestionDao;
  *
  * @author  yezi 2013-5-15
  */
+
+/**
+ * 添加填空题的界面
+ * tao
+ */
 public class AddReadFrame extends javax.swing.JFrame {// 填空题
 
     /** Creates new form AddRadioFrame */

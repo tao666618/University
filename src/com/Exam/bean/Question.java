@@ -1,14 +1,18 @@
 package com.Exam.bean;
 
+/**
+ * 用于存储考试试题的信息,通过该类，可以方便地获取或设置每个试题的各项属性，如题目、选项、答案等信息。
+ *tao
+ */
 public class Question {
  private int id ;// 试题的id
  private int typeid ;// 套题类型的id
  private String q_subject;// 试题题目
  private String q_answer;// 问题答案
- private String optionA;
- private String optionB;
- private String optionC;
- private String optionD;
+ private String optionA;//选项A
+ private String optionB;//B
+ private String optionC;//C
+ private String optionD;//D
  private String note;// 备注
 public int getId() {
 	return id;

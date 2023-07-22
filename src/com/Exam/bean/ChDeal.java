@@ -4,8 +4,18 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 //字符处理类
+
+/**
+ * 该类用于对字符串进行编码转换和日期时间获取的处理。
+ * tao
+ */
 public class ChDeal {
-public static String toChinese(String strvalue) {
+	/**
+	 *将字符串从GB2312编码转换为GBK编码并返回结果。
+	 * @param strvalue
+	 * @return
+	 */
+	public static String toChinese(String strvalue) {
 	try {
 		if (strvalue == null) {
 			return "";
@@ -19,7 +29,12 @@ public static String toChinese(String strvalue) {
 	}
 }
 
-public static String toISO(String strValue) {
+	/**
+	 *
+	 * @param strValue
+	 * @return 将字符串从GBK编码转换为GB2312编码并返回结果。
+	 */
+	public static String toISO(String strValue) {
 	try {
 		if (strValue == null) {
 			return "";
@@ -53,7 +68,12 @@ public static String toISO(String strValue) {
 			return is ;
 		}
 //		编写获得日期和时间的方法．
-public static String  getDateTime(){						//该方法返回值为String类型
+
+	/**
+	 *
+	 * @return 获取当前日期和时间，返回一个格式为"yyyy-MM-dd HH:mm:ss"的日期时间字符串
+	 */
+	public static String  getDateTime(){						//该方法返回值为String类型
 	SimpleDateFormat format;                                //simpleDateFormat类使得可以选择任何用户定义的日期-时间格式的模式
 	Date date = null;
 	Calendar myDate = Calendar.getInstance();               //Calendar 的方法 getInstance，以获得此类型的一个通用的对象
