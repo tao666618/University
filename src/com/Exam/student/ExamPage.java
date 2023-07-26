@@ -1086,8 +1086,8 @@ public class ExamPage extends javax.swing.JFrame implements Runnable {
             JOptionPane.showMessageDialog(this, "已经是第一题","消息对话框",JOptionPane.WARNING_MESSAGE);
         }
     }
-    /*判断题的上一题事件end yezi2013-5-15*/
-    /*判断题的下一题事件begein yezi2013-5-15*/
+    /*判断题的上一题事件end yezi2013-5-15*/    //这写的注释都不清楚
+    /*判断题的下一题事件begein yezi2013-5-15*/   //单词都拼错
     private void readdownjButtonActionPerformed(java.awt.event.ActionEvent evt) {
         String count = countjLabel4.getText();			//见代码说明
         int countText = Integer.parseInt(count);		//转换为Integer对象

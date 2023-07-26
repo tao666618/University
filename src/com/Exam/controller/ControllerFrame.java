@@ -25,6 +25,7 @@ import com.Exam.dao.FindGrade;
 
 /**
  * 主控制窗口
+ * 后台管理界面
  * 使用Java Swing 构建的
  * GUI 组件
  * tao

@@ -48,11 +48,12 @@ public User getUser(User user) {
 	
 	//按照用户id查找用户
 /**
+ * 输入用户的ID 和密码来判断用户类型
  * @param user 于tb_use表对应的java bean User类对象
  * @return	User类对象
  */
 public User getUserID(User user){
-	String strSql = "select * from tb_user where id=?";
+	String strSql = "select * from tb_user where id=?";  //从名为tb_user的数据库表中根据id字段查询用户信息。
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	try {
@@ -83,7 +84,7 @@ public User getUserID(User user){
 
 //查找用户表中最大的id号
 /**
-* @param user 于tb_use表对应的java bean User类对象
+* @param 于tb_use表对应的java bean User类对象
 * @return	User类对象
 */
 public int getUserID(){

@@ -13,10 +13,15 @@ import javax.swing.LayoutStyle;
 import com.Exam.bean.*;
 import com.Exam.controller.ControllerFrame;
 import com.Exam.dao.*;
+import org.junit.Test;
 
 /**
  *
  * @author  Administrator
+ */
+
+/**
+ * 考试开始界面，tao
  */
 public class MyLand extends javax.swing.JFrame {
 
@@ -62,7 +67,7 @@ public class MyLand extends javax.swing.JFrame {
 
         UserNameTextField.setText("");
 
-        choicejLabel2.setText(" 密  码 ：");
+        choicejLabel2.setText(" 密 码 ：");
 
         PassWordjTextField.setText("");
 
@@ -144,7 +149,6 @@ public class MyLand extends javax.swing.JFrame {
         jpanel.setLayout(jpanelLayout);
         pack();
     }
-
 private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {
 	if(userChoicejComboBox.getSelectedIndex()==0){
 		JOptionPane.showMessageDialog(this, "没有确定路径的'用户类型'", 
@@ -162,26 +166,26 @@ private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {
 	}
 	MyFindUserDao findUser = new MyFindUserDao();
 	User user = new User();
-	user.setUserName(UserNameTextField.getText());
-	user.setPassWord(PassWordjTextField.getText());	
+	user.setUserName(UserNameTextField.getText());  //输入的用户名
+	user.setPassWord(PassWordjTextField.getText());	//输入的密码
 	User users = findUser.getUser(user);
 	if((users.getUserType() == 1 && !(userChoicejComboBox.getSelectedItem().equals("管理员")))){
 		JOptionPane.showMessageDialog(this,"登录系统身份不符","信息对话框",JOptionPane.WARNING_MESSAGE);
 		return;
-	}
+	}//这个if语句作用是来先判断users.getUserType() == 1以及在用户类型中是不是选择“管理员”身份，不是的话弹出对话框，告诉你登录身份不符
 	if((users.getUserType() == 0) && !(userChoicejComboBox.getSelectedItem().equals("考生"))){
 		JOptionPane.showMessageDialog(this,"登录系统身份不符","信息对话框",JOptionPane.WARNING_MESSAGE);
 		return;
-	}
-	if((users.getId()!= 0 )&&(users.getUserType()==0)){	
+	}//这个if同上，来判断是不是考生
+	if((users.getId()!= 0 )&&(users.getUserType()==0)){	  //判断用户是不是考生
 		int id = users.getId();
 		java.io.File file = new java.io.File("save.txt");
 		try {		
 			if(file.exists()){
 				file.delete();
-			}
-			file.createNewFile();
-			java.io.FileOutputStream out = new java.io.FileOutputStream(file);	
+			}//如果"save.txt"文件存在，则删除该文件。这样做的目的可能是在每次登录时，清除之前保存的用户ID信息。
+			file.createNewFile();//创建一个新的"save.txt"文件
+			java.io.FileOutputStream out = new java.io.FileOutputStream(file);//写入数据到"save.txt"文件中
 			byte buy[] = (""+id).getBytes();	
 			out.write(buy);								
 			out.close();						
@@ -189,19 +193,20 @@ private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {
 			e.printStackTrace();					
 		}
 		InsertUserDao insertUserDao = new InsertUserDao();
-		
 		insertUserDao.setUserHaveIn(users);
-		StudentExam studentExam = new StudentExam();		
-		studentExam.setVisible(true);
+		//接下来是设计一个窗口
+		StudentExam studentExam = new StudentExam();
+		studentExam.setVisible(true);//显示这个窗口
 		studentExam.setBounds(200, 200, 400, 300);
 		studentExam.setTitle("考试系统");
-		this.dispose();
+		this.dispose();//关闭当前窗口，即登录窗口
 	}
-	if((users.getId()!=0)&&(users.getUserType()==1)){
-		dispose();
+
+	if((users.getId()!=0)&&(users.getUserType()==1)){  //判断语句
+		dispose();  //关闭当前窗口
 		ControllerFrame controller = new ControllerFrame();
-		controller.setVisible(true);
-		controller.setBounds(100,100, 700, 500);
+		controller.setVisible(true);  //设置controller对象可见，即显示这个窗口
+		controller.setBounds(100,100, 700, 500);//设置这个窗口在屏幕上的大小和位置
 	}
 	else if(users.getId() == 0){
 		JOptionPane.showMessageDialog(this,"用户名或密码错误","信息对话框",JOptionPane.WARNING_MESSAGE);

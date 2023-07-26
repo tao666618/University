@@ -41,8 +41,9 @@ public class InsertUserDao {
 
 		return blnrec;
 	} 
-	//修改用户，用于判断用户是否已参加考试
+	//
 /**
+ * 修改用户，用于判断用户是否已参加考试
  * @param userinfo 与用户表tb_use对应的Java bean
  * @return 成功修改havaIn值返回true，否则返回false
  */
