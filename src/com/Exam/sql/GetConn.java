@@ -26,11 +26,14 @@ public class GetConn {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+		/*
+		 * 连接数据库
+		 */
 		try {
 			conn = DriverManager
 					.getConnection(
 							"jdbc:mysql://localhost:3306/db_Exam?useUnicode=true&characterEncoding=UTF-8",
-							"root", "123456");
+							"root", "123456");// 连接数据库
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}// 异常处理
@@ -48,7 +51,7 @@ public class GetConn {
 	public ResultSet executeQuery(String sql) {
 		try {
 			conn = getConnection();
-			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+			stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,//
 					ResultSet.CONCUR_READ_ONLY);
 			rs = stmt.executeQuery(sql);
 		} catch (SQLException ex) {

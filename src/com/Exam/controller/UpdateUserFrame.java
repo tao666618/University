@@ -13,9 +13,9 @@ import javax.swing.JOptionPane;
 import com.Exam.bean.*;
 import com.Exam.dao.*;
 
+
 /**
- *
- * @author  Administrator
+ * 用户修改窗口
  */
 public class UpdateUserFrame extends javax.swing.JFrame {
 

@@ -149,6 +149,9 @@ public class MyLand extends javax.swing.JFrame {
         jpanel.setLayout(jpanelLayout);
         pack();
     }
+	/*
+	 * 重置按钮的事件处理
+	 */
 private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {
 	if(userChoicejComboBox.getSelectedIndex()==0){
 		JOptionPane.showMessageDialog(this, "没有确定路径的'用户类型'", 
@@ -196,10 +199,10 @@ private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		insertUserDao.setUserHaveIn(users);
 		//接下来是设计一个窗口
 		StudentExam studentExam = new StudentExam();
-		studentExam.setVisible(true);//显示这个窗口
-		studentExam.setBounds(200, 200, 400, 300);
-		studentExam.setTitle("考试系统");
-		this.dispose();//关闭当前窗口，即登录窗口
+		studentExam.setVisible(true);//设置studentExam对象可见，即显示这个窗口
+		studentExam.setBounds(200, 200, 400, 300);//设置这个窗口在屏幕上的大小和位置
+		studentExam.setTitle("考试系统");//设置这个窗口的标题
+		this.dispose();//关闭当前窗口
 	}
 
 	if((users.getId()!=0)&&(users.getUserType()==1)){  //判断语句

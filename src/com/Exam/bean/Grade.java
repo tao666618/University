@@ -3,6 +3,7 @@ package com.Exam.bean;
 /**
  * 存储学生的考试成绩并提供相关的访问和修改方法   tao
  */
+//这个类用于存储学生的考试成绩
 public class Grade { // 学分用户
 	private int id;// 考生编号
 	private String UserName;// 考生姓名

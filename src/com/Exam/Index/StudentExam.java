@@ -13,12 +13,13 @@ import com.Exam.bean.*;
 import com.Exam.dao.*;
 import com.Exam.student.ExamPage;
 
-/**
- *
- * @author  Administrator
+/*
+ * 学生考试界面
  */
 public class StudentExam extends javax.swing.JFrame {
-    /** Creates new form StudentExam */
+   /*
+    * 保存学生信息
+    */
     public StudentExam() {
         initComponents();
     }

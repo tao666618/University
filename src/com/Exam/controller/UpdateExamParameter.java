@@ -12,8 +12,7 @@ import com.Exam.bean.Stat;
 import com.Exam.dao.FindStat;
 
 /**
- *
- * @author  Administrator
+ * 设置考试参数窗体
  */
 public class UpdateExamParameter extends javax.swing.JFrame {
 

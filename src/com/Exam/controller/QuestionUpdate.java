@@ -13,9 +13,8 @@ import javax.swing.JOptionPane;
 import com.Exam.bean.*;
 import com.Exam.dao.FindQuestionDao;
 
-/**
- *
- * @author  Administrator
+/*
+    * 修改试题窗口
  */
 public class QuestionUpdate extends javax.swing.JFrame {// 修改试题
 

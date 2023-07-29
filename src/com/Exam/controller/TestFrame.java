@@ -12,8 +12,7 @@ import com.Exam.bean.*;
 import com.Exam.dao.FindQuestionDao;
 
 /**
- *
- * @author  Administrator
+ * 试题添加窗口
  */
 public class TestFrame extends javax.swing.JFrame {
 

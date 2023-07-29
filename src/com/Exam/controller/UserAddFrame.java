@@ -15,8 +15,7 @@ import com.Exam.bean.*;
 import com.Exam.dao.MyFindUserDao;
 
 /**
- *
- * @author  Administrator
+ * 用户添加窗口
  */
 public class UserAddFrame extends javax.swing.JFrame {
 

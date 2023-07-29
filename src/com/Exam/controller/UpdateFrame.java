@@ -14,8 +14,7 @@ import com.Exam.bean.*;
 import com.Exam.dao.*;
 
 /**
- *
- * @author  Administrator
+ * 修改/删除考题窗口
  */
 public class UpdateFrame extends javax.swing.JFrame {
 
