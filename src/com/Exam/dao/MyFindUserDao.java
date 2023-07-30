@@ -3,6 +3,9 @@ import com.Exam.bean.*;
 import com.Exam.sql.GetConn;
 import java.sql.*;
 import java.util.*;
+/*
+ * 该类用于查找用户信息
+ */
 public class MyFindUserDao {
 	GetConn getConn = new GetConn();
 	private Connection conn = getConn.getConnection();
@@ -52,7 +55,8 @@ public User getUser(User user) {
  * @param user 于tb_use表对应的java bean User类对象
  * @return	User类对象
  */
-public User getUserID(User user){
+
+	public User getUserID(User user){
 	String strSql = "select * from tb_user where id=?";  //从名为tb_user的数据库表中根据id字段查询用户信息。
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;

@@ -11,6 +11,7 @@ public class User {
   private String  UserName;// 用户名
   private String PassWord;// 用户密码
   private int haveIn;// 是否参加考试
+
 public int getHaveIn() {
 	return haveIn;
 }

@@ -6,6 +6,7 @@
 
 package com.Exam.Index;
 
+
 import java.awt.Insets;
 import javax.swing.*;
 import javax.swing.GroupLayout;
@@ -14,6 +15,7 @@ import com.Exam.bean.*;
 import com.Exam.controller.ControllerFrame;
 import com.Exam.dao.*;
 import org.junit.Test;
+import work.SelectTestSubjects;
 
 /**
  *
@@ -180,7 +182,7 @@ private void enterButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		JOptionPane.showMessageDialog(this,"登录系统身份不符","信息对话框",JOptionPane.WARNING_MESSAGE);
 		return;
 	}//这个if同上，来判断是不是考生
-	if((users.getId()!= 0 )&&(users.getUserType()==0)){	  //判断用户是不是考生
+	if((users.getId()!= 0 )&&(users.getUserType()==0)){	  //用户是考生
 		int id = users.getId();
 		java.io.File file = new java.io.File("save.txt");
 		try {		

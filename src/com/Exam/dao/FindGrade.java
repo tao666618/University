@@ -116,6 +116,7 @@ public Grade getGradeName(Grade grade){
 		return grade;
 	}
 public static void main(String[] args) {
+
 	FindGrade fg = new FindGrade();
 	Grade f = new Grade();
 	f.setUserName("kk");
