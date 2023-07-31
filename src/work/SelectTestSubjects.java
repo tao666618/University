@@ -1,28 +1,18 @@
 package work;
 
 import javax.swing.*;
+
+import com.Exam.Index.StudentExam;
 import net.miginfocom.swing.*;
-/*
- * Created by JFormDesigner on Sun Jul 30 21:57:04 CST 2023
- */
+import com.Exam.dao.FindGrade;
 
+public class SelectTestSubjects extends JFrame {
+    private int userID;
+    private String title;
 
-
-/**
- * @author zhangjiantao
- */
-public class SelectTestSubjects extends JPanel {
     public SelectTestSubjects() {
         initComponents();
     }
-    // 测试
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        frame.add(new SelectTestSubjects());
-        frame.pack();
-        frame.setVisible(true);
-    }
-
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
@@ -37,48 +27,10 @@ public class SelectTestSubjects extends JPanel {
         setLayout(new MigLayout(
                 "hidemode 3",
                 // columns
-                "[fill]" +
-                        "[fill]" +
-                        "[fill]" +
-                        "[fill]" +
-                        "[77:74,fill]" +
-                        "[fill]" +
-                        "[fill]" +
-                        "[fill]" +
-                        "[fill]" +
-                        "[fill]" +
-                        "[0:15,fill]" +
-                        "[fill]" +
-                        "[fill]" +
-                        "[fill]" +
-                        "[fill]" +
-                        "[fill]" +
-                        "[fill]" +
-                        "[fill]" +
-                        "[fill]",
+                "[][][][][77:74,fill][fill][][][][][0:15,fill][fill]",
                 // rows
-                "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]" +
-                        "[]"));
-
+                "[][][][][][][][fill][fill][fill][fill]"
+        ));
         //---- label1 ----
         label1.setText("选择考试科目");
         add(label1, "cell 5 1 1 2");
@@ -112,17 +64,43 @@ public class SelectTestSubjects extends JPanel {
         add(button2, "cell 6 17 3 1");
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
+
+    // 设置用户ID
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    // 获取用户ID
+    public int getUserID() {
+        return userID;
+    }
+
+    //根据用户ID从FindGrade类中调用getSubject方法查找用户科目
+    public String getSubject() {
+        FindGrade findGrade = new FindGrade();
+        return findGrade.getSubject(userID);
+    }
+
     //当点击重置按钮时，清空输入框
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {
         textField1.setText("");
     }
+
     //点击确认按钮时，判断有没有输入科目代码，如果没有，弹出提示框
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {
         if (textField1.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "请输入科目代码", "提示", JOptionPane.ERROR_MESSAGE);
+        } else if (!textField1.getText().equals(getSubject())) {
+            JOptionPane.showMessageDialog(null, "科目代码错误或你没有参加这门考试", "提示", JOptionPane.ERROR_MESSAGE);
+        } else {
+            StudentExam studentExam = new StudentExam();
+            studentExam.setVisible(true);
+            studentExam.setBounds(200, 200, 400, 300);
+            studentExam.setTitle("考试系统");
+            // 关闭当前窗口
+            this.dispose();
         }
     }
-
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     private JLabel label1;
@@ -131,6 +109,16 @@ public class SelectTestSubjects extends JPanel {
     private JTextField textField1;
     private JButton button1;
     private JButton button2;
-    // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
-}
+    public void setTitle(String title) {
+        String oldTitle = this.title;
+        if (title == null) {
+            title = "";
+        }
+        // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+    }
 
+    public static void main(String[] args) {
+        SelectTestSubjects selectTestSubjects = new SelectTestSubjects();
+        selectTestSubjects.setVisible(true);
+    }
+}
