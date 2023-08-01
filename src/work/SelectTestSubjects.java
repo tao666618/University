@@ -89,10 +89,20 @@ public class SelectTestSubjects extends JFrame {
         } else if (!textField1.getText().equals(getSubject())) {
             JOptionPane.showMessageDialog(null, "科目代码错误或你没有参加这门考试", "提示", JOptionPane.ERROR_MESSAGE);
         } else {
+
+
+            //将科目代码传递给StudentExam类
+            StudentExam.setSubjectID(textField1.getText());
+
+
+
             StudentExam studentExam = new StudentExam();
             studentExam.setVisible(true);
             studentExam.setBounds(200, 200, 400, 300);
             studentExam.setTitle("考试系统");
+
+
+
             // 关闭当前窗口
             this.dispose();
         }

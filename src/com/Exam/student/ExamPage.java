@@ -8,6 +8,8 @@ package com.Exam.student;
 import java.io.*;
 import java.util.Date;
 import javax.swing.*;
+
+import com.Exam.Index.StudentExam;
 import com.Exam.bean.*;
 import com.Exam.dao.*;
 import com.sun.org.apache.xml.internal.serialize.XHTMLSerializer;
@@ -16,7 +18,15 @@ import com.sun.org.apache.xml.internal.serialize.XHTMLSerializer;
  * @author  Administrator
  */
 public class ExamPage extends javax.swing.JFrame implements Runnable {
+    private static String subjectID;
 
+    public static void setSubjectID(String subjectID) {
+        ExamPage.subjectID = subjectID;
+    }
+
+    public static String getSubjectID() {
+        return subjectID;
+    }
     private javax.swing.JTabbedPane ExamTabbedPane;
     /*单选题布局控件*/
     private javax.swing.JPanel radiojPanel;//单选题布局
@@ -236,6 +246,7 @@ public class ExamPage extends javax.swing.JFrame implements Runnable {
         }
         timeLabel.setText("考试时间：");
         FindQuestionDao fin = new FindQuestionDao();
+
         Stat stat = new Stat();//参数类
         stat.setId(1);//给参数类设置id
         FindStat findStat = new FindStat();//参数控制类
@@ -264,7 +275,7 @@ public class ExamPage extends javax.swing.JFrame implements Runnable {
             System.out.println("111111111111111111 "+(countid ==  null));
             Question question = new Question();
             question.setId(countid[radio]);// 设置试题的id值
-            Question ques = fin.getQuestion(question);// 根据设置的id值查找试题
+            Question ques = fin.getQuestion(question,subjectID);// 根据设置的id值查找单选题
             radiojTextArea.setColumns(20);
             radiojTextArea.setRows(5);
             radiojTextArea.setText(ChDeal.toChinese(ques.getQ_subject()));
@@ -385,7 +396,7 @@ public class ExamPage extends javax.swing.JFrame implements Runnable {
             countEm = fin.radowId(st.getJudge_BL()/10,ChDeal.toISO("判断题"));
             Question quest = new Question();
             quest.setId(countEm[radio]);
-            Question estimation = fin.getQuestion(quest);
+            Question estimation = fin.getQuestion(quest,subjectID);//获取判断题
             judgejTextArea.setColumns(20);
             judgejTextArea.setRows(5);
             judgejTextArea.setText(ChDeal.toChinese(estimation.getQ_subject()));
@@ -490,7 +501,7 @@ public class ExamPage extends javax.swing.JFrame implements Runnable {
             exitcount = fin.radowId(st.getMore_BL()/10,"多选题");
             Question questexit = new Question();
             questexit.setId(exitcount[radio]);
-            Question estimqu= fin.getQuestion(questexit);
+            Question estimqu= fin.getQuestion(questexit,subjectID);//获取多选题
             morejTextArea.setColumns(20);
             morejTextArea.setRows(5);
             morejTextArea.setText(ChDeal.toChinese(estimqu.getQ_subject()));
@@ -619,7 +630,7 @@ public class ExamPage extends javax.swing.JFrame implements Runnable {
             countRead = fin.radowId(st.getRead_BL()/10,"阅读题");  //得到抽取到的单选题题号
             Question question4 = new Question();
             question4.setId(countRead[radio]);// 设置试题的id值
-            Question ques4 = fin.getQuestion(question4);// 根据设置的id值查找试题
+            Question ques4 = fin.getQuestion(question4,subjectID);// 根据设置的id值查找试题
 
             readjTextArea.setColumns(20);
             readjTextArea.setRows(5);
