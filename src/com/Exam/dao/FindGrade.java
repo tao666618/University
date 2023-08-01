@@ -162,7 +162,7 @@ public class FindGrade {
     public static void main(String[] args) {
 
         FindGrade fg = new FindGrade();
-        String subject = fg.getSubject(12);
+        String subject = fg.getSubject(13);
         System.out.println("科目为: " + subject);
     }
 

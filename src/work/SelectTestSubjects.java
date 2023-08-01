@@ -65,15 +65,11 @@ public class SelectTestSubjects extends JFrame {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
-    // 设置用户ID
+   //从FindGrade类中接受用户ID
     public void setUserID(int userID) {
         this.userID = userID;
     }
 
-    // 获取用户ID
-    public int getUserID() {
-        return userID;
-    }
 
     //根据用户ID从FindGrade类中调用getSubject方法查找用户科目
     public String getSubject() {
@@ -122,3 +118,6 @@ public class SelectTestSubjects extends JFrame {
         selectTestSubjects.setVisible(true);
     }
 }
+
+
+

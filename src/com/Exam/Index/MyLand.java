@@ -183,7 +183,7 @@ public class MyLand extends javax.swing.JFrame {
 			JOptionPane.showMessageDialog(this, "登录系统身份不符", "信息对话框", JOptionPane.WARNING_MESSAGE);
 			return;
 		}//这个if同上，来判断是不是考生
-		if ((users.getId() != 0) && (users.getUserType() == 0)) {      //用户是考生
+		if ((users.getId() != 0) && (users.getUserType() == 0)) { //用户是考生
 			int id = users.getId();
 			java.io.File file = new java.io.File("save.txt");
 			try {
@@ -201,20 +201,18 @@ public class MyLand extends javax.swing.JFrame {
 			InsertUserDao insertUserDao = new InsertUserDao();
 			insertUserDao.setUserHaveIn(users);
 
-			//获取用户id
+			// 获取用户id
 			int userID = users.getId();
-			// 创建SelectTestSubjects类实例
-			SelectTestSubjects testSubjects = new SelectTestSubjects();
-			testSubjects.setUserID(userID); //将用户id传递给SelectTestSubjects类
-
-
-			//接下来是设计一个窗口
+			// 创建SelectTestSubjects类实例并传递用户ID
 			SelectTestSubjects selectTestSubjects = new SelectTestSubjects();
-			selectTestSubjects.setVisible(true);//设置selectTestSubjects对象可见，即显示这个窗口
+			selectTestSubjects.setUserID(userID);
 
-		selectTestSubjects.setBounds(200, 200, 400, 300);//设置这个窗口在屏幕上的大小和位置
-			selectTestSubjects.setTitle("考试科目选择");//设置这个窗口的标题
-			this.dispose();//关闭当前窗口
+// 设置selectTestSubjects对象可见，即显示这个窗口
+			selectTestSubjects.setVisible(true);
+			selectTestSubjects.setBounds(200, 200, 400, 300); // 设置这个窗口在屏幕上的大小和位置
+			selectTestSubjects.setTitle("考试科目选择"); // 设置这个窗口的标题
+
+			this.dispose(); // 关闭当前窗口
 
 			//接下来是设计一个窗口
 //            StudentExam studentExam = new StudentExam();
