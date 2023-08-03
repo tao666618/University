@@ -28,7 +28,7 @@ public class FindQuestionDao {
 				question.setOptionB(rs.getString("optionB"));
 				question.setOptionC(rs.getString("optionC"));
 				question.setOptionD(rs.getString("optionD"));
-				question.setNote(rs.getString("note"));
+				question.setNote(rs.getString("subject"));
 				lstList.add(question);
 			}
 		} catch (Exception e) {
@@ -89,7 +89,7 @@ public class FindQuestionDao {
 	public boolean updateQuestionDBbean(Question question) {
 		boolean blnrec = true;
 		String strSql = "update tb_question set q_subject =?,q_answer=?,optionA=?,optionB=? "
-				+ ",optionC = ?,optionD = ?, note = ? where id = ?";
+				+ ",optionC = ?,optionD = ?, subject = ? where id = ?";
 		System.out.println(strSql);
 		PreparedStatement pstmt = null;
 		try {
