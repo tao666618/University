@@ -132,7 +132,7 @@ public class TestFrame extends javax.swing.JFrame {
             }
         });
 
-        noteMessage.setText(" 备  注：");
+        noteMessage.setText("所属科目");
 
         noteField.setText("");
 
@@ -289,6 +289,11 @@ public class TestFrame extends javax.swing.JFrame {
                 return;
             }
         }
+        //点击确认时判断所属科目是否为空
+        if(qTypejComboBox.getSelectedItem().toString().equals("请选择所属科目")){
+            JOptionPane.showMessageDialog(this,"请输入所属科目！","消息对话框",JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         Question question = new Question();
         question.setId(Integer.parseInt(qidjTextField.getText()));
         FindQuestionDao insertQuestion = new FindQuestionDao();
@@ -312,6 +317,7 @@ public class TestFrame extends javax.swing.JFrame {
             con.setVisible(true);
         }
     }
+
     private void formWindowClosed(java.awt.event.WindowEvent evt) {
         dispose();
         ControllerFrame controllFrame = new ControllerFrame();

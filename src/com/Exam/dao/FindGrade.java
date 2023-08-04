@@ -46,6 +46,42 @@ public class FindGrade {
         }
         return lstList;
     }
+    public List findGrade1() {
+        String strSql = "select * from tb_grade";
+        Statement pstmt = null;
+        ResultSet rs = null;
+        List lstList = new ArrayList();
+        try {
+            pstmt = conn.createStatement();
+            rs = pstmt.executeQuery(strSql);
+            while (rs.next()) {
+                Grade grade = new Grade();
+                grade.setSubject(rs.getString("subject"));
+                grade.setUserName(rs.getString("userName"));
+                grade.setRadioResult(rs.getInt("radioResult"));
+                grade.setFullResule(rs.getInt("fullResule"));
+                grade.setEsitResult(rs.getInt("esitResult"));
+                grade.setReadResult(rs.getInt("readResult"));/*yezi-2013_5-14*/
+                grade.setBatsisResult(rs.getInt("batsisResult"));
+                grade.setDate(rs.getString("date"));
+                lstList.add(grade);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) {
+                    rs.close();
+                    pstmt.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return lstList;
+    }
+
+
     //按id号查询成绩方法
 
     /**
@@ -61,7 +97,7 @@ public class FindGrade {
             pstmt.setInt(1, grade.getId());
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                grade.setId(rs.getInt("id"));
+                grade.setSubject(rs.getString("subject"));
                 grade.setUserName(rs.getString("userName"));
                 grade.setRadioResult(rs.getInt("radioResult"));
                 grade.setFullResule(rs.getInt("fullResule"));
@@ -99,7 +135,7 @@ public class FindGrade {
             pstmt.setString(1, grade.getUserName());
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                grade.setId(rs.getInt("id"));
+                grade.setSubject(rs.getString("subject"));
                 grade.setUserName(rs.getString("userName"));
                 grade.setRadioResult(rs.getInt("radioResult"));
                 grade.setFullResule(rs.getInt("fullResule"));
@@ -107,6 +143,7 @@ public class FindGrade {
                 grade.setReadResult(rs.getInt("readResult"));/*yezi-2013_5-14*/
                 grade.setBatsisResult(rs.getInt("batsisResult"));
                 grade.setDate(rs.getString("date"));
+                grade.setId(rs.getInt("id"));
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import com.Exam.bean.*;
 import com.Exam.dao.FindQuestionDao;
 /*
-    * 修改试题
+    * 修改试题界面
  */
 public class QuestionUpdate extends javax.swing.JFrame {// 修改试题
 
@@ -114,7 +114,7 @@ public class QuestionUpdate extends javax.swing.JFrame {// 修改试题
 
         answerjTextField.setText(ChDeal.toChinese(question.getQ_answer()));
 
-        remarkoption.setText(" 备注：");
+        remarkoption.setText("所属科目");
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);

@@ -48,7 +48,7 @@ public class UpdateFrame extends javax.swing.JFrame {
                 new Object [][] {
                 },
                 new String [] {
-                        "试题编号", "试题类型编号", "试题题目", "试题答案","答案A","答案B","答案C","答案D","备注"
+                        "试题编号", "试题类型编号", "试题题目", "试题答案","答案A","答案B","答案C","答案D","科目"
                 }
         ));
         DefaultTableModel model = (DefaultTableModel) RadioTable.getModel();
@@ -148,6 +148,7 @@ public class UpdateFrame extends javax.swing.JFrame {
         qupdate.setVisible(true);
         qupdate.setBounds(150, 100, 405,550);
     }
+
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {
         if(tempCount == null){
             JOptionPane.showMessageDialog(this, "没有指定要删除的问题！","信息对话框",JOptionPane.WARNING_MESSAGE);
@@ -167,13 +168,14 @@ public class UpdateFrame extends javax.swing.JFrame {
             }
         }
     }
-
+    //退出按钮
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {
         dispose();
         ControllerFrame controll = new ControllerFrame();
         controll.setVisible(true);
         controll.setBounds(100, 100, 650, 500);
     }
+    //
     private void RadioTableMousePressed(java.awt.event.MouseEvent evt) {
         int count = RadioTable.getSelectedRow();
         tempCount = (Integer) RadioTable.getValueAt(count,0);
