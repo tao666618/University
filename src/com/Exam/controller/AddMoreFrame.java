@@ -91,7 +91,7 @@ public class AddMoreFrame extends javax.swing.JFrame { // 多选题
         answerC.setText("答案C：");
         answerC1.setText("答案D：");
         jLabel4.setText("答案：");
-        jLabel5.setText("备 注:");
+        jLabel5.setText("所属科目");
         addjButton.setText("添加");
         addjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

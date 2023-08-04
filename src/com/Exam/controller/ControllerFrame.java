@@ -86,19 +86,19 @@ public class ControllerFrame extends javax.swing.JFrame {// 主控制窗体
 
 		jTable1.setModel(new javax.swing.table.DefaultTableModel(
 
-				new Object[][] {}, new String[] { "考生编号", "考生姓名", "单选题得分", "多选题得分",
+				new Object[][] {}, new String[] { "考试科目", "考生姓名", "单选题得分", "多选题得分",
 				"判断题得分", "阅读题得分","总分", "考试时间" }/*yezi-2013-5-14*/
 
 		));
 		DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 		FindGrade findGradebean = new FindGrade();
-		java.util.List list = findGradebean.findGrade();// 把获取的所有学分用户放入list
+		java.util.List list = findGradebean.findGrade1();// 把获取的所有学分用户放入list
 		setTitle("后台管理");
 		if (!list.isEmpty()) {
 			for (int j = 0; j < list.size(); j++) {
 				Grade grade = (Grade) list.get(j);
 				model.addRow(new Object[] {// 添加所有学分用户
-						grade.getId(), ChDeal.toChinese(grade.getUserName()),
+						grade.getSubject(), ChDeal.toChinese(grade.getUserName()),
 						grade.getRadioResult(), grade.getFullResule(),
 						grade.getEsitResult(),grade.getReadResult(),  grade.getBatsisResult(),/*yezi2013-5-15*/
 						ChDeal.toChinese(grade.getDate()) });
@@ -415,7 +415,7 @@ public class ControllerFrame extends javax.swing.JFrame {// 主控制窗体
 		getContentPane().setLayout(layout);
 		pack();
 	}
-
+	//查询考生信息
 	private void findButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		boolean flag = false;// 没查询到为true;否则为false
 		// 首先判断用户是否输入查询值
@@ -426,7 +426,7 @@ public class ControllerFrame extends javax.swing.JFrame {// 主控制窗体
 		// 如果用户选择按“考生号”查询考分，系统将调用getGradeID()方法，并将查询结果显示在窗体中
 		if (messageJchock.getSelectedItem().toString().equals("考生号")) {
 			FindGrade findGrade = new FindGrade();
-			java.util.List<Grade> gradeList = findGrade.findGrade();
+			java.util.List<Grade> gradeList = findGrade.findGrade1();
 			if (!gradeList.isEmpty()) {
 				for (int i = 0; i < gradeList.size(); i++) {
 					Grade grade = gradeList.get(i);
@@ -447,9 +447,8 @@ public class ControllerFrame extends javax.swing.JFrame {// 主控制窗体
 									.setRowCount(0);
 							((DefaultTableModel) jTable1.getModel())
 									.addRow(new Object[] {
-											grade.getId(),
-											ChDeal.toChinese(grade
-													.getUserName()),
+											grade.getSubject(),
+											ChDeal.toChinese(grade.getUserName()),
 											grade.getRadioResult(),
 											grade.getFullResule(),
 											grade.getEsitResult(),
@@ -469,7 +468,7 @@ public class ControllerFrame extends javax.swing.JFrame {// 主控制窗体
 				}
 			}
 		}
-
+		// 如果用户选择按“考生姓名”查询考分，系统将调用getGradeName()方法，并将查询结果显示在窗体中
 		if (messageJchock.getSelectedItem().toString().equals("考生姓名")) {
 			FindGrade findGrade = new FindGrade();
 			Grade grade = new Grade();
@@ -480,7 +479,7 @@ public class ControllerFrame extends javax.swing.JFrame {// 主控制窗体
 					&& (grage.getId() != 0)) {
 				((DefaultTableModel) jTable1.getModel()).setRowCount(0);
 				((DefaultTableModel) jTable1.getModel()).addRow(new Object[] {
-						grage.getId(), grage.getUserName(),
+						grage.getSubject(), grage.getUserName(),
 						grage.getRadioResult(), grage.getFullResule(),
 						grage.getEsitResult(), grade.getReadResult(),grage.getBatsisResult(),
 						ChDeal.toChinese(grage.getDate()) });
@@ -490,7 +489,7 @@ public class ControllerFrame extends javax.swing.JFrame {// 主控制窗体
 			}
 		}
 	}
-
+	//添加试题
 	private void addquestionActionPerformed(java.awt.event.ActionEvent evt) {
 		TestFrame testFrame = new TestFrame();
 		testFrame.setVisible(true);
@@ -498,7 +497,7 @@ public class ControllerFrame extends javax.swing.JFrame {// 主控制窗体
 		testFrame.setTitle("添加考题");
 		this.setVisible(false);
 	}
-
+	//删除试题
 	private void updateMenuActionPerformed(java.awt.event.ActionEvent evt) {
 		dispose();
 		UpdateFrame updateFrame = new UpdateFrame();

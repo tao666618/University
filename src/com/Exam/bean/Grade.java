@@ -13,6 +13,15 @@ public class Grade { // 学分用户
 	private int readResult;// 阅读题得分 yezi-2013-5-14  tao
 	private int batsisResult;// 总分
 	private String date;// 考试时间
+
+	private String subject;// 科目
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
 	public String getDate() {
 		return date;
 	}

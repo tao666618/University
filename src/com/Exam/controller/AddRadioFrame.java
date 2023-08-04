@@ -85,7 +85,7 @@ public class AddRadioFrame extends javax.swing.JFrame {// 单选题
         answerC.setText("答案C：");
         answerC1.setText("答案D：");
         jLabel4.setText("答案：");
-        jLabel5.setText("备注");
+        jLabel5.setText("所属科目");
         addjButton.setText("添加");
         addjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,12 +263,12 @@ public class AddRadioFrame extends javax.swing.JFrame {// 单选题
             JOptionPane.showMessageDialog(this, "备注不能为空", "信息对话框",JOptionPane.WARNING_MESSAGE);
             return;
         }
-        if(!jTextField1.getText().equals("A")&&!(jTextField1.getText().equals("B")&&
-                !(jTextField1.getText().equals("C"))&&!(jTextField1.getText().equals("D"))&&
-                (jTextField1.getText()).length()>1)){
-            JOptionPane.showMessageDialog(this, "答案必须是'A','B','C','D'其中的一项", "信息对话框",JOptionPane.WARNING_MESSAGE);
+        //判断答案是否为A,B,C,D其中的一项,如果不是则提示
+        if(!jTextField1.getText().equals("A")&&!jTextField1.getText().equals("B")&&!jTextField1.getText().equals("C")&&!jTextField1.getText().equals("D")){
+            JOptionPane.showMessageDialog(this, "答案只能为A,B,C,D其中的一项", "信息对话框",JOptionPane.WARNING_MESSAGE);
             return;
         }
+
         FindQuestionDao findQuestion = new FindQuestionDao();
         Question question = new Question();
         question.setId(Integer.parseInt(idTextField.getText()));
