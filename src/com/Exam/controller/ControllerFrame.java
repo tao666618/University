@@ -504,7 +504,7 @@ public class ControllerFrame extends javax.swing.JFrame {// 主控制窗体
 		updateFrame.setVisible(true);
 		updateFrame.setBounds(100, 150, 630, 350);
 	}
-
+	//添加用户
 	private void addUserButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		dispose();
 		AddFrame addUser = new AddFrame();
@@ -512,14 +512,14 @@ public class ControllerFrame extends javax.swing.JFrame {// 主控制窗体
 		addUser.setBounds(200, 200, 400, 300);
 		addUser.setTitle("添加用户对话框");
 	}
-
+	//设置考试参数
 	private void findGradeActionPerformed(java.awt.event.ActionEvent evt) {
 		dispose();
 		UpdateExamParameter updateExam = new UpdateExamParameter();
 		updateExam.setVisible(true);
 		updateExam.setBounds(200, 150, 500, 350);
 	}
-
+	//退出系统
 	private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {
 		int n = JOptionPane.showConfirmDialog(this, "确定要退出系统吗？", "确定对话框",
 				JOptionPane.YES_NO_OPTION);
@@ -534,7 +534,7 @@ public class ControllerFrame extends javax.swing.JFrame {// 主控制窗体
 	private void addMenuActionPerformed(java.awt.event.ActionEvent evt) {
 
 	}
-
+	//添加单选题
 	private void addradioItemActionPerformed(java.awt.event.ActionEvent evt) {
 		dispose();
 		AddRadioFrame addRadioFrame = new AddRadioFrame();

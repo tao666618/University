@@ -43,7 +43,7 @@ public class UpdateUserFrame extends javax.swing.JFrame {
         userPassWord = new javax.swing.JLabel();
         jPasswordField2 = new javax.swing.JPasswordField();
         userPassWord1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        examStatusTextField = new javax.swing.JTextField();  // 新增的文本框
         uopdatejButton = new javax.swing.JButton();
         resSetjButton = new javax.swing.JButton();
         closejButton = new javax.swing.JButton();
@@ -95,13 +95,8 @@ public class UpdateUserFrame extends javax.swing.JFrame {
 
         userPassWord1.setText("是否考试：");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] {"没有参加考试", "已经参加考试" }));
-        if(user.getHaveIn() == 0){
-            jComboBox1.setSelectedIndex(0);
-        }
-        if(user.getHaveIn() == 1){
-            jComboBox1.setSelectedIndex(1);
-        }
+        examStatusTextField.setText(user.getHaveIn() == 0 ? "没有参加考试" : "已经参加考试");  // 初始化文本框内容
+
         uopdatejButton.setText("修改");
         uopdatejButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,10 +139,10 @@ public class UpdateUserFrame extends javax.swing.JFrame {
                                                 .addGap(18, 18, 18)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                         .addComponent(jPasswordField2, javax.swing.GroupLayout.Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
-                                                        .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, 183, Short.MAX_VALUE)
-                                                        .addComponent(jPasswordField1, 0, 0, Short.MAX_VALUE)
+                                                        .addComponent(UserTypejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jPasswordField1, javax.swing.GroupLayout.Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
                                                         .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(UserTypejComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                                        .addComponent(examStatusTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))))
                                 .addGap(122, 122, 122))
         );
         jPanel1Layout.setVerticalGroup(
@@ -171,7 +166,7 @@ public class UpdateUserFrame extends javax.swing.JFrame {
                                         .addComponent(userPassWord))
                                 .addGap(20, 20, 20)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(examStatusTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(userPassWord1))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -210,11 +205,7 @@ public class UpdateUserFrame extends javax.swing.JFrame {
         MyFindUserDao findUser = new MyFindUserDao();
         uses = findUser.getUserID(user);// 根据文件读取的数据Id查找用户
 
-//	java.util.List list = findUser.findUser();
-//	for(int i = 0;i<list.size();i++){
-//		User users = (User)list.get(i);
-//		uses = findUser.getUserID(users);
-        if(uses.getPassWord().equals(jPasswordField1.getText())){// 判断如果被查找的用户密码等于前台输入的密码
+        if(uses.getPassWord().equals(jPasswordField1.getText())){
 
             user.setUserName(ChDeal.toISO(jTextField1.getText()));
             if(UserTypejComboBox.getSelectedItem().toString().equals("考生")){
@@ -223,14 +214,14 @@ public class UpdateUserFrame extends javax.swing.JFrame {
             if(UserTypejComboBox.getSelectedItem().toString().equals("管理员")){
                 user.setUserType(1);
             }
-            if(jComboBox1.getSelectedItem().toString().equals("没有参加考试")){
+            if(examStatusTextField.getText().equals("没有参加考试")){
                 user.setHaveIn(0);
             }
-            if(jComboBox1.getSelectedItem().toString().equals("已经参加考试")){
+            if(examStatusTextField.getText().equals("已经参加考试")){
                 user.setHaveIn(1);
             }
             InsertUserDao insertUser = new InsertUserDao();
-            flag = insertUser.updateUserHaveIn2(user);	// 执行Update
+            flag = insertUser.updateUserHaveIn2(user);
 
         }else{
 
@@ -243,37 +234,38 @@ public class UpdateUserFrame extends javax.swing.JFrame {
             if(UserTypejComboBox.getSelectedItem().toString().equals("管理员")){
                 user.setUserType(1);
             }
-            if(jComboBox1.getSelectedItem().toString().equals("没有参加考试")){
+            if(examStatusTextField.getText().equals("没有参加考试")){
                 user.setHaveIn(0);
             }
-            if(jComboBox1.getSelectedItem().toString().equals("已经参加考试")){
+            if(examStatusTextField.getText().equals("已经参加考试")){
                 user.setHaveIn(1);
             }
             InsertUserDao insertUser = new InsertUserDao();
             flag = insertUser.updateUserHaveIn(user);
         }
-//		}
+
         if(flag == true){
             JOptionPane.showMessageDialog(this,"用户信息修改成功","信息对话框",JOptionPane.WARNING_MESSAGE );
         }
 
     }
     private void resSetjButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        if(user.getUserType()==1){
-            UserTypejComboBox.setSelectedIndex(1);
-        }
-        if(user.getUserType() == 0){
-            UserTypejComboBox.setSelectedIndex(0);
-        }
-        jTextField1.setText(ChDeal.toChinese(user.getUserName()));
-        if(user.getHaveIn() == 0){
-            jComboBox1.setSelectedIndex(0);
-        }
-        if(user.getHaveIn() == 1){
-            jComboBox1.setSelectedIndex(1);
-        }
-        jPasswordField1.setText(user.getPassWord());
-        jPasswordField2.setText(user.getPassWord());
+
+//        if(user.getUserType()==1){
+//            UserTypejComboBox.setSelectedIndex(1);
+//        }
+//        if(user.getUserType() == 0){
+//            UserTypejComboBox.setSelectedIndex(0);
+//        }
+//        jTextField1.setText(ChDeal.toChinese(user.getUserName()));
+//        if(user.getHaveIn() == 0){
+//            examStatusTextField.setText("没有参加考试");
+//        }
+//        if(user.getHaveIn() == 1){
+//            examStatusTextField.setText("已经参加考试");
+//        }
+//        jPasswordField1.setText(user.getPassWord());
+//        jPasswordField2.setText(user.getPassWord());
     }
     private void closejButtonActionPerformed(java.awt.event.ActionEvent evt) {
         dispose();
@@ -287,7 +279,6 @@ public class UpdateUserFrame extends javax.swing.JFrame {
 
     private javax.swing.JComboBox UserTypejComboBox;
     private javax.swing.JButton closejButton;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
@@ -300,6 +291,7 @@ public class UpdateUserFrame extends javax.swing.JFrame {
     private javax.swing.JLabel userPassWord;
     private javax.swing.JLabel userPassWord1;
     private javax.swing.JLabel userType;
+    private javax.swing.JTextField examStatusTextField;  // 新增的文本框
     private User user = null;
     private Integer temp;
 }

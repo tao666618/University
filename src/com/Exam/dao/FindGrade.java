@@ -64,6 +64,7 @@ public class FindGrade {
                 grade.setReadResult(rs.getInt("readResult"));/*yezi-2013_5-14*/
                 grade.setBatsisResult(rs.getInt("batsisResult"));
                 grade.setDate(rs.getString("date"));
+                grade.setId(rs.getInt("id"));
                 lstList.add(grade);
             }
         } catch (Exception e) {
