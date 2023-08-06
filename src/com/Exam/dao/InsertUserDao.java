@@ -13,7 +13,7 @@ public class InsertUserDao {
 	public boolean setUserInfoToDBbean(User userinfo) {
 		boolean blnrec = true;
 		String strSql = "insert into tb_user"
-				+ " values(?,?,?,?,?)";
+				+ " values(?,?,?,?,?,?)";
 		System.out.println(strSql);
 		PreparedStatement pstmt = null;
 		MyMD5 md = new MyMD5();
@@ -25,6 +25,7 @@ public class InsertUserDao {
 			pstmt.setString(4, md.createPassWord(userinfo.getPassWord()));
 			pstmt.setString(4, userinfo.getPassWord());
 			pstmt.setInt(5, userinfo.getHaveIn());
+			//pstmt.setString(6, );
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -76,7 +77,7 @@ public boolean setUserHaveIn(User userinfo) {
 		MyMD5 md = new MyMD5();
 		boolean blnrec = true;
 		String strSql = "update tb_user set userType =?,UserName=?,passWord=?,havaIn=? " +
-				"where Id = ?";
+				"where Id = ?,subject = ?";
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(strSql);
@@ -85,6 +86,7 @@ public boolean setUserHaveIn(User userinfo) {
 			pstmt.setString(3, userinfo.getPassWord());
 			pstmt.setInt(4,userinfo.getHaveIn());
 			pstmt.setInt(5, userinfo.getId());
+			pstmt.setString(6, userinfo.getSubject());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -104,8 +106,8 @@ public boolean setUserHaveIn(User userinfo) {
 	public boolean updateUserHaveIn2(User userinfo) {
 		MyMD5 md = new MyMD5();
 		boolean blnrec = true;
-		String strSql = "update tb_user set userType =?,UserName=?,havaIn=? " +
-				"where Id = ?";
+		String strSql  = "update tb_user set userType=?, UserName=?, havaIn=? " +
+				"where Id=? and subject=?";
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(strSql);
@@ -113,6 +115,7 @@ public boolean setUserHaveIn(User userinfo) {
 			pstmt.setString(2, userinfo.getUserName());
 			pstmt.setInt(3,userinfo.getHaveIn());
 			pstmt.setInt(4, userinfo.getId());
+			pstmt.setString(5, userinfo.getSubject());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -12,6 +12,16 @@ public class User {
   private String PassWord;// 用户密码
   private int haveIn;// 是否参加考试
 
+	private String subject;// 科目
+
+	//生成get、set方法
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
 public int getHaveIn() {
 	return haveIn;
 }
@@ -42,5 +52,5 @@ public int getUserType() {
 public void setUserType(int userType) {
 	UserType = userType;
 }
-  
+
 }

@@ -93,9 +93,9 @@ public class UpdateUserFrame extends javax.swing.JFrame {
 
         jPasswordField2.setText(user.getPassWord());
 
-        userPassWord1.setText("是否考试：");
+        userPassWord1.setText("考试科目：");
 
-        examStatusTextField.setText(user.getHaveIn() == 0 ? "没有参加考试" : "已经参加考试");  // 初始化文本框内容
+        examStatusTextField.setText("");  // 初始化为空白
 
         uopdatejButton.setText("修改");
         uopdatejButton.addActionListener(new java.awt.event.ActionListener() {
@@ -189,7 +189,7 @@ public class UpdateUserFrame extends javax.swing.JFrame {
 
         pack();
     }
-
+    //点击修改按钮
     private void uopdatejButtonActionPerformed(java.awt.event.ActionEvent evt) {
         boolean flag = false;
         if(jTextField1.getText().equals("")){
@@ -205,7 +205,7 @@ public class UpdateUserFrame extends javax.swing.JFrame {
         MyFindUserDao findUser = new MyFindUserDao();
         uses = findUser.getUserID(user);// 根据文件读取的数据Id查找用户
 
-        if(uses.getPassWord().equals(jPasswordField1.getText())){
+        if(uses.getPassWord().equals(jPasswordField1.getText())){//如果密码没有修改
 
             user.setUserName(ChDeal.toISO(jTextField1.getText()));
             if(UserTypejComboBox.getSelectedItem().toString().equals("考生")){
@@ -214,12 +214,21 @@ public class UpdateUserFrame extends javax.swing.JFrame {
             if(UserTypejComboBox.getSelectedItem().toString().equals("管理员")){
                 user.setUserType(1);
             }
-            if(examStatusTextField.getText().equals("没有参加考试")){
-                user.setHaveIn(0);
+            //如果考试科目不为空，将输入的考试科目传递给user对象
+            if(!examStatusTextField.getText().equals("")){
+                user.setSubject(examStatusTextField.getText());
             }
-            if(examStatusTextField.getText().equals("已经参加考试")){
-                user.setHaveIn(1);
-            }
+
+
+
+
+
+//            if(examStatusTextField.getText().equals("没有参加考试")){
+//                user.setHaveIn(0);
+//            }
+//            if(examStatusTextField.getText().equals("已经参加考试")){
+//                user.setHaveIn(1);
+//            }
             InsertUserDao insertUser = new InsertUserDao();
             flag = insertUser.updateUserHaveIn2(user);
 
@@ -234,12 +243,16 @@ public class UpdateUserFrame extends javax.swing.JFrame {
             if(UserTypejComboBox.getSelectedItem().toString().equals("管理员")){
                 user.setUserType(1);
             }
-            if(examStatusTextField.getText().equals("没有参加考试")){
-                user.setHaveIn(0);
+            //如果考试科目不为空，将输入的考试科目传递给user对象
+            if(!examStatusTextField.getText().equals("")){
+                user.setSubject(examStatusTextField.getText());
             }
-            if(examStatusTextField.getText().equals("已经参加考试")){
-                user.setHaveIn(1);
-            }
+//            if(examStatusTextField.getText().equals("没有参加考试")){
+//                user.setHaveIn(0);
+//            }
+//            if(examStatusTextField.getText().equals("已经参加考试")){
+//                user.setHaveIn(1);
+//            }
             InsertUserDao insertUser = new InsertUserDao();
             flag = insertUser.updateUserHaveIn(user);
         }
@@ -249,6 +262,7 @@ public class UpdateUserFrame extends javax.swing.JFrame {
         }
 
     }
+
     private void resSetjButtonActionPerformed(java.awt.event.ActionEvent evt) {
         if(user.getUserType()==1){
             UserTypejComboBox.setSelectedIndex(1);
@@ -256,13 +270,8 @@ public class UpdateUserFrame extends javax.swing.JFrame {
         if(user.getUserType() == 0){
             UserTypejComboBox.setSelectedIndex(0);
         }
-        jTextField1.setText(ChDeal.toChinese(user.getUserName()));
-        if(user.getHaveIn() == 0){
-            examStatusTextField.setText("没有参加考试");
-        }
-        if(user.getHaveIn() == 1){
-            examStatusTextField.setText("已经参加考试");
-        }
+        jTextField1.setText(user.getUserName());  // 初始化为空白
+        examStatusTextField.setText("");  // 初始化为空白
         jPasswordField1.setText(user.getPassWord());
         jPasswordField2.setText(user.getPassWord());
     }

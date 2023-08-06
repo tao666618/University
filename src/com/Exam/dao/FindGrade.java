@@ -190,7 +190,25 @@ public class FindGrade {
         return subject;
     }
 
-
+    //传入一个String类型的科目名和一个String类型的用户名，在tb_grade表中新建一条记录，将科目名和用户名插入到新建的对应列中
+//    public void insertGrade(String subject, String userName) {
+//        String strSql = "insert into tb_grade(subject,userName) values(?,?)";
+//        PreparedStatement pstmt = null;
+//        try {
+//            pstmt = conn.prepareStatement(strSql);
+//            pstmt.setString(9, subject);
+//            pstmt.setString(2, userName);
+//            pstmt.executeUpdate();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                if (pstmt != null) pstmt.close();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
 
 
