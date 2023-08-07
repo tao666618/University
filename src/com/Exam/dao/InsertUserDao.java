@@ -25,6 +25,7 @@ public class InsertUserDao {
 			pstmt.setString(4, md.createPassWord(userinfo.getPassWord()));
 			pstmt.setString(4, userinfo.getPassWord());
 			pstmt.setInt(5, userinfo.getHaveIn());
+			pstmt.setString(6, null);
 			//pstmt.setString(6, );
 			pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -104,34 +105,44 @@ public boolean setUserHaveIn(User userinfo) {
 	} 
 	//修改用户信息二
 	public boolean updateUserHaveIn2(User userinfo) {
-		MyMD5 md = new MyMD5();
-		boolean blnrec = true;
-		String strSql  = "update tb_user set userType=?, UserName=?, havaIn=? " +
-				"where Id=? and subject=?";
+		boolean success = true;
+		String sql = "UPDATE tb_user SET userType=?, UserName=?, havaIn=?, subject=? WHERE Id=?";
 		PreparedStatement pstmt = null;
+
 		try {
-			pstmt = conn.prepareStatement(strSql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, userinfo.getUserType());
 			pstmt.setString(2, userinfo.getUserName());
-			pstmt.setInt(3,userinfo.getHaveIn());
-			pstmt.setInt(4, userinfo.getId());
-			pstmt.setString(5, userinfo.getSubject());
-			pstmt.executeUpdate();
-		} catch (Exception e) {
+			pstmt.setInt(3, userinfo.getHaveIn());
+			pstmt.setString(4, userinfo.getSubject());
+			pstmt.setInt(5, userinfo.getId());
+
+			int rowsAffected = pstmt.executeUpdate();
+			if (rowsAffected == 0) {
+				success = false;
+				System.out.println("No rows were updated."); // Debugging
+			}
+//			else {
+//				System.out.println(rowsAffected + " rows were updated."); // Debugging
+//			}
+		} catch (SQLException e) {
 			e.printStackTrace();
-			blnrec = false;
+			success = false;
 		} finally {
 			try {
 				if (pstmt != null) {
 					pstmt.close();
 				}
-			} catch (Exception e) {
+			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		return blnrec;
-	} 
-//	修改用户密码信息
+
+		return success;
+	}
+
+
+	//	修改用户密码信息
 	public boolean updateUserPassWord(User userinfo) {
 		boolean blnrec = true;
 		String strSql = "update tb_user set passWord=? " +
@@ -140,9 +151,10 @@ public boolean setUserHaveIn(User userinfo) {
 		try {
 			pstmt = conn.prepareStatement(strSql);		
 			MyMD5 mymd5 = new MyMD5();
-			//pstmt.setString(1, mymd5.createPassWord(userinfo.getPassWord()));
+			pstmt.setString(1, mymd5.createPassWord(userinfo.getPassWord()));
 			pstmt.setString(1,userinfo.getPassWord());
 			pstmt.setInt(2,userinfo.getId());
+			//pstmt.setString(3, mymd5.createPassWord(userinfo.getSubject()));
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
