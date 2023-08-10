@@ -164,7 +164,7 @@ public class FindGrade {
 
     //按id号查找考试科目，传入一个参数user_id，返回一个String类型的科目名，从exam_student_connection表中查找user_id对应的subject
     public String getSubject(int id) {
-        String strSql = "select * from exam_student_connection where user_id=?";
+        String strSql = "select * from tb_user where user_id=?";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         String subject = null;
@@ -210,6 +210,44 @@ public class FindGrade {
 //        }
 //    }
 
+//根据id号在tb_user表中查找havaIn值
+public int getHaveInValue(int userId) {
+    String strSql = "SELECT havaIn FROM tb_user WHERE id=?";
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+    int haveInValue = -1; // 默认值，表示查找失败
+
+    try {
+        pstmt = conn.prepareStatement(strSql);
+        pstmt.setInt(1, userId);
+        rs = pstmt.executeQuery();
+
+        if (rs.next()) {
+            haveInValue = rs.getInt("havaIn");
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        try {
+            if (pstmt != null) {
+                rs.close();
+                pstmt.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    return haveInValue;
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -219,7 +257,7 @@ public class FindGrade {
     public static void main(String[] args) {
 
         FindGrade fg = new FindGrade();
-        String subject = fg.getSubject(13);
+        String subject = fg.getSubject(19);
         System.out.println("科目为: " + subject);
     }
 

@@ -92,6 +92,7 @@ public class AddFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "请输入用户姓名", "信息对话框", JOptionPane.WARNING_MESSAGE);// this表示此窗口
             return;
         }
+
         if (!jPasswordField1.getText().equals(jPasswordField2.getText())) {
             JOptionPane.showMessageDialog(this, "两次输入的密码不一致", "信息对话框", JOptionPane.WARNING_MESSAGE);
             return;

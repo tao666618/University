@@ -141,6 +141,7 @@ public class MyFindUserDao {
                 user.setUserName(rs.getString("UserName"));
                 user.setPassWord(rs.getString("passWord"));
                 user.setHaveIn(rs.getInt("havaIn"));
+                user.setSubject(rs.getString("subject"));
                 lstList.add(user);
             }
         } catch (Exception e) {

@@ -6,12 +6,16 @@
 
 package com.Exam.controller;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.*;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import com.Exam.bean.*;
+import com.Exam.dao.FindGrade;
+import com.Exam.dao.InsertUserDao;
 import com.Exam.dao.MyFindUserDao;
 
 /**
@@ -20,8 +24,11 @@ import com.Exam.dao.MyFindUserDao;
 public class UserAddFrame extends javax.swing.JFrame {
 
     /** Creates new form UserAddFrame */
+
     public UserAddFrame() {
-        initComponents();
+        initComponents(); // 初始化界面组件
+        addTableListener1(); // 调用添加表格监听器的方法
+
     }
 
     /** This method is called from within the constructor to
@@ -51,7 +58,7 @@ public class UserAddFrame extends javax.swing.JFrame {
         userTable.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {},
                 new String [] {
-                        "编号", "用户类型", "用户名", "密码","是否参加考试"
+                        "编号", "用户类型", "用户名", "考试科目","是否参加考试"
                 }
         ));
 
@@ -64,7 +71,7 @@ public class UserAddFrame extends javax.swing.JFrame {
                 User user = (User)list.get(i);
                 model.addRow(new Object[] {
                         user.getId(),user.getUserType(),ChDeal.toChinese(user.getUserName()),
-                        ChDeal.toChinese(user.getPassWord()),user.getHaveIn()
+                        user.getSubject(),user.getHaveIn()==1?"是":"否"
                 });
             }
         }
@@ -202,6 +209,73 @@ public class UserAddFrame extends javax.swing.JFrame {
         ControllerFrame controll = new ControllerFrame();
         controll.setVisible(true);
     }
+
+
+
+    private void addTableListener1() {
+        userTable.addMouseListener(new MouseAdapter() {
+            User user = new User();
+            InsertUserDao dao = new InsertUserDao();
+            FindGrade findGrade = new FindGrade();
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 1) { // 双击事件
+                    int row = userTable.getSelectedRow();
+                    int column = userTable.getSelectedColumn();
+
+                    DefaultTableModel model = (DefaultTableModel) userTable.getModel();
+                    int id = (int) model.getValueAt(row, 0); // 获取行的编号
+
+                    if (column == 4) { // 如果点击的是“是否考试”列
+                        String currentValue = (String) model.getValueAt(row, column);
+                        String newValue = currentValue.equals("是") ? "否" : "是"; // 切换值
+
+                        user.setId(id);
+                        user.setHaveIn(newValue.equals("是") ? 1 : 0);
+
+                        if (!(findGrade.getHaveInValue(user.getId()) == user.getHaveIn())) {
+                            if (dao.updateUserHaveIn2(user)) {
+                                JOptionPane.showMessageDialog(null, "修改成功！", "信息提示框", JOptionPane.WARNING_MESSAGE);
+                            }
+                        }
+
+                        // 更新表格中的值
+                        model.setValueAt(newValue, row, column);
+                    }
+
+                    if (column == 3) {
+                        String currentValue = (String) model.getValueAt(row, column);
+                        // 获取修改后的值
+                        String newValue = (String) JOptionPane.showInputDialog(
+                                null,
+                                "请输入新的考试科目：",
+                                "修改考试科目",
+                                JOptionPane.PLAIN_MESSAGE,
+                                null,
+                                null,
+                                currentValue
+                        );
+
+                        if (newValue != null && !newValue.isEmpty() && !newValue.equals(currentValue)) {
+                            user.setId(id);
+                            user.setSubject(newValue);
+
+                            if (dao.updateUserHaveIn2(user)) {
+                                JOptionPane.showMessageDialog(null, "修改成功！", "信息提示框", JOptionPane.WARNING_MESSAGE);
+                            }
+
+                            // 更新表格中的值
+                            model.setValueAt(newValue, row, column);
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+
+
+
+
     /**
      * @param args the command line arguments
      */
