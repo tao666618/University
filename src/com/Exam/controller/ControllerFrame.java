@@ -512,7 +512,7 @@ public class ControllerFrame extends javax.swing.JFrame {// 主控制窗体
 		addUser.setBounds(200, 200, 400, 300);
 		addUser.setTitle("添加用户对话框");
 	}
-
+//设置考试参数
 	private void findGradeActionPerformed(java.awt.event.ActionEvent evt) {
 		dispose();
 		UpdateExamParameter updateExam = new UpdateExamParameter();
@@ -562,7 +562,7 @@ public class ControllerFrame extends javax.swing.JFrame {// 主控制窗体
 		addjudge.setVisible(true);
 		addjudge.setBounds(200, 150, 400, 350);
 	}
-
+//用户添加窗口
 	private void userManagerActionPerformed(java.awt.event.ActionEvent evt) {
 		dispose();
 		UserAddFrame userAdd = new UserAddFrame();

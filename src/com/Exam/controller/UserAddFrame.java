@@ -223,13 +223,19 @@ public class UserAddFrame extends javax.swing.JFrame {
                     int column = userTable.getSelectedColumn();
 
                     DefaultTableModel model = (DefaultTableModel) userTable.getModel();
+
                     int id = (int) model.getValueAt(row, 0); // 获取行的编号
+
 
                     if (column == 4) { // 如果点击的是“是否考试”列
                         String currentValue = (String) model.getValueAt(row, column);
+
+                        user.setHaveIn(currentValue.equals("是") ? 1 : 0);
+                        user.setId(id);
+                        user.setN(findGrade.getNForIdAndHavaIn(user.getId(), user.getHaveIn()));
                         String newValue = currentValue.equals("是") ? "否" : "是"; // 切换值
 
-                        user.setId(id);
+
                         user.setHaveIn(newValue.equals("是") ? 1 : 0);
 
                         if (!(findGrade.getHaveInValue(user.getId()) == user.getHaveIn())) {
@@ -244,6 +250,8 @@ public class UserAddFrame extends javax.swing.JFrame {
 
                     if (column == 3) {
                         String currentValue = (String) model.getValueAt(row, column);
+
+
                         // 获取修改后的值
                         String newValue = (String) JOptionPane.showInputDialog(
                                 null,
@@ -255,8 +263,12 @@ public class UserAddFrame extends javax.swing.JFrame {
                                 currentValue
                         );
 
-                        if (newValue != null && !newValue.isEmpty() && !newValue.equals(currentValue)) {
+                        if (newValue != null && !newValue.isEmpty() && !newValue.equals(currentValue)) {// 如果输入的值不为空且与原来的值不同
                             user.setId(id);
+                            user.setSubject(currentValue);
+                           user.setN(findGrade.getNForIdAndSubject(user.getId(), user.getSubject()));
+
+
                             user.setSubject(newValue);
 
                             if (dao.updateUserHaveIn2(user)) {

@@ -13,8 +13,7 @@ public class InsertUserDao {
     //增加用户
     public boolean setUserInfoToDBbean(User userinfo) {
         boolean blnrec = true;
-        String strSql = "insert into tb_user"
-                + " values(?,?,?,?,?,?)";
+        String strSql = "insert into tb_user (id, userType, UserName, passWord, havaIn, subject) values (?, ?, ?, ?, ?, ?)";
         System.out.println(strSql);
         PreparedStatement pstmt = null;
         MyMD5 md = new MyMD5();
@@ -24,10 +23,8 @@ public class InsertUserDao {
             pstmt.setInt(2, userinfo.getUserType());
             pstmt.setString(3, userinfo.getUserName());
             pstmt.setString(4, md.createPassWord(userinfo.getPassWord()));
-            pstmt.setString(4, userinfo.getPassWord());
             pstmt.setInt(5, userinfo.getHaveIn());
             pstmt.setString(6, null);
-            //pstmt.setString(6, );
             pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -44,6 +41,7 @@ public class InsertUserDao {
 
         return blnrec;
     }
+
     //
 
     /**
@@ -111,7 +109,7 @@ public class InsertUserDao {
     //修改用户信息二
     public boolean updateUserHaveIn2(User userinfo) {
         boolean success = true;
-        String sql = "UPDATE tb_user SET userType=?, UserName=?, havaIn=?, subject=? WHERE Id=?";
+        String sql = "UPDATE tb_user SET userType=?, UserName=?, havaIn=?, subject=? WHERE N=?";
         PreparedStatement pstmt = null;
 
         try {
@@ -120,7 +118,7 @@ public class InsertUserDao {
             pstmt.setString(2, userinfo.getUserName());
             pstmt.setInt(3, userinfo.getHaveIn());
             pstmt.setString(4, userinfo.getSubject());
-            pstmt.setInt(5, userinfo.getId());
+            pstmt.setInt(5, userinfo.getN());
 
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected == 0) {

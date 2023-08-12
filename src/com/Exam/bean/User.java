@@ -12,6 +12,16 @@ public class User {
   private String PassWord;// 用户密码
   private int haveIn;// 是否参加考试
 
+	private int N;
+
+	public int getN() {
+		return N;
+	}
+
+	public void setN(int n) {
+		N = n;
+	}
+
 	private String subject;// 科目
 
 	//生成get、set方法

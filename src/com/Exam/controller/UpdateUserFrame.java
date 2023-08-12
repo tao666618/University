@@ -7,6 +7,7 @@
 package com.Exam.controller;
 
 import java.io.*;
+import java.util.List;
 import java.util.Objects;
 
 import javax.swing.JOptionPane;
@@ -229,12 +230,11 @@ public class UpdateUserFrame extends javax.swing.JFrame {
             }
 
             FindGrade findGrade = new FindGrade();
-            if (!(Objects.equals(findGrade.getSubject(uses.getId()), examStatusTextField.getText()))) {
+            List<String> subjects = findGrade.getSubjects(uses.getId());
+            if (!subjects.contains(examStatusTextField.getText())) {
                 InsertUserDao insertUser = new InsertUserDao();
                 flag = insertUser.InsertNewData(user);
-
             }
-
             else {
                 InsertUserDao insertUser = new InsertUserDao();
                 flag = insertUser.updateUserHaveIn2(user);
@@ -260,13 +260,12 @@ public class UpdateUserFrame extends javax.swing.JFrame {
 //            if(examStatusTextField.getText().equals("已经参加考试")){
 //                user.setHaveIn(1);
 //            }
-            FindGrade findGrade = new FindGrade();
-            if (!(Objects.equals(findGrade.getSubject(uses.getId()), examStatusTextField.getText()))) {
+            FindGrade fg = new FindGrade();
+            List<String> subjects = fg.getSubjects(uses.getId());
+            if (!subjects.contains(examStatusTextField.getText())) {
                 InsertUserDao insertUser = new InsertUserDao();
                 flag = insertUser.InsertNewData(user);
-
             }
-
             else {
                 InsertUserDao insertUser = new InsertUserDao();
                 flag = insertUser.updateUserHaveIn2(user);

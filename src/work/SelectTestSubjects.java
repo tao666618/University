@@ -6,6 +6,8 @@ import com.Exam.Index.StudentExam;
 import net.miginfocom.swing.*;
 import com.Exam.dao.FindGrade;
 
+import java.util.List;
+
 public class SelectTestSubjects extends JFrame {
     private int userID;
     private String title;
@@ -65,16 +67,17 @@ public class SelectTestSubjects extends JFrame {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
-   //从FindGrade类中接受用户ID
+    //从FindGrade类中接受用户ID
     public void setUserID(int userID) {
         this.userID = userID;
     }
 
 
     //根据用户ID从FindGrade类中调用getSubject方法查找用户科目
-    public String getSubject() {
+    public List<String> getSubject() {
         FindGrade findGrade = new FindGrade();
-        return findGrade.getSubject(userID);
+        List<String> subjects = findGrade.getSubjects(userID);
+        return subjects;
     }
 
     //当点击重置按钮时，清空输入框
@@ -86,25 +89,24 @@ public class SelectTestSubjects extends JFrame {
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {
         if (textField1.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "请输入科目代码", "提示", JOptionPane.ERROR_MESSAGE);
-        } else if (!textField1.getText().equals(getSubject())) {
-            JOptionPane.showMessageDialog(null, "科目代码错误或你没有参加这门考试", "提示", JOptionPane.ERROR_MESSAGE);
+        } else if (!getSubject().contains(textField1.getText())) {
+            JOptionPane.showMessageDialog(null, "你没有参加这门考试", "提示", JOptionPane.ERROR_MESSAGE);
         } else {
+            FindGrade findGrade = new FindGrade();
+            if (findGrade.getHavalnForIdAndSubject(userID, textField1.getText()) == 1) {//
+                //将科目代码传递给StudentExam类
+                StudentExam.setSubjectID(textField1.getText());
+                StudentExam studentExam = new StudentExam();
+                studentExam.setVisible(true);
+                studentExam.setBounds(200, 200, 400, 300);
+                studentExam.setTitle("考试系统");
+                // 关闭当前窗口
+                this.dispose();
+            }else {
+                JOptionPane.showMessageDialog(null, "你没有参加考试的权限", "提示", JOptionPane.ERROR_MESSAGE);
+            }
 
 
-            //将科目代码传递给StudentExam类
-            StudentExam.setSubjectID(textField1.getText());
-
-
-
-            StudentExam studentExam = new StudentExam();
-            studentExam.setVisible(true);
-            studentExam.setBounds(200, 200, 400, 300);
-            studentExam.setTitle("考试系统");
-
-
-
-            // 关闭当前窗口
-            this.dispose();
         }
     }
 
