@@ -9,6 +9,7 @@ package com.Exam.controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.*;
+import java.util.Vector;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -223,12 +224,15 @@ public class UserAddFrame extends javax.swing.JFrame {
                     int column = userTable.getSelectedColumn();
 
                     DefaultTableModel model = (DefaultTableModel) userTable.getModel();
-
+                    String currentValue2 = (String) model.getValueAt(row, 2);//获得当前行第三个单元格的值
+                    user.setUserName(currentValue2);
                     int id = (int) model.getValueAt(row, 0); // 获取行的编号
 
 
                     if (column == 4) { // 如果点击的是“是否考试”列
                         String currentValue = (String) model.getValueAt(row, column);
+
+
 
                         user.setHaveIn(currentValue.equals("是") ? 1 : 0);
                         user.setId(id);
