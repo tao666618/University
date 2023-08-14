@@ -124,7 +124,8 @@ public class AddFrame extends javax.swing.JFrame {
         MyMD5 myMD5 = new MyMD5();
         user.setId(i + 1);
         System.out.println("list " + list.size() + 1);
-        user.setPassWord(myMD5.createPassWord(jPasswordField1.getText()));
+        String passWord = jPasswordField1.getText();
+        user.setPassWord(myMD5.createPassWord(passWord));
         InsertUserDao insertUser = new InsertUserDao();
         insertUser.setUserInfoToDBbean(user);
         JOptionPane.showMessageDialog(this, "用户添加", "信息对话框", JOptionPane.WARNING_MESSAGE);

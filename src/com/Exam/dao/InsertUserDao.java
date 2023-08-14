@@ -22,7 +22,7 @@ public class InsertUserDao {
             pstmt.setInt(1, userinfo.getId());
             pstmt.setInt(2, userinfo.getUserType());
             pstmt.setString(3, userinfo.getUserName());
-            pstmt.setString(4, md.createPassWord(userinfo.getPassWord()));
+            pstmt.setString(4, userinfo.getPassWord());
             pstmt.setInt(5, userinfo.getHaveIn());
             pstmt.setString(6, null);
             pstmt.executeUpdate();

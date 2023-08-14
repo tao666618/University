@@ -18,19 +18,20 @@ public class MyFindUserDao {
     //查找用户，用于登陆界面
 
     /**
-     * @param user 用户信息表tb_use对应的Java Bean
      * @return user 对象
      */
     public User getUser(User user) {
-        String strSql = "select * from tb_user where UserName=? and PassWord =?";
+        String strSql = "SELECT * FROM tb_user WHERE UserName=? AND passWord=?";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         MyMD5 myMd5 = new MyMD5();
+
         try {
             pstmt = conn.prepareStatement(strSql);
             pstmt.setString(1, user.getUserName());
             pstmt.setString(2, myMd5.createPassWord(user.getPassWord()));
-            System.out.println(myMd5.createPassWord(user.getPassWord()));
+            System.out.println("Generated Password: " + myMd5.createPassWord(user.getPassWord()));
+
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 user.setId(rs.getInt("id"));
@@ -51,8 +52,11 @@ public class MyFindUserDao {
                 e.printStackTrace();
             }
         }
+
+        System.out.println("Retrieved User: " + user);
         return user;
     }
+
 
     //按照用户id查找用户
 

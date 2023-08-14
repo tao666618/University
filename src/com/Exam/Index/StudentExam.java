@@ -150,13 +150,13 @@ public class StudentExam extends javax.swing.JFrame {
             user.setId(id);
             User use = findUser.getUserID(user);
             System.out.println("AAA" + use.getId());
-            if (use.getHaveIn() == 0) {
+            if (use.getHaveIn() == 1) {
                 ExamPage exampage = new ExamPage();
                 exampage.setVisible(true);
                 InsertUserDao insertUser = new InsertUserDao();
                 use.setHaveIn(0);/*yezi-2013-5-15*/
                 boolean b = insertUser.setUserHaveIn(use);
-            } else if (use.getHaveIn() == 1) {
+            } else if (use.getHaveIn() == 0) {
                 JOptionPane.showMessageDialog(this, "你已经参加完考试了！", "信息对话框", JOptionPane.WARNING_MESSAGE);
             }
             in.close();

@@ -55,9 +55,8 @@ public class MyMD5 {
 	}
 	public static void main(String[] args) {
 		MyMD5 myMD5 = new MyMD5();
-		String password = myMD5.createPassWord("222");
-		System.out.println("PASSWORD1: "+myMD5.createPassWord("222"));
-		System.out.println("PASSWORD: "+password);
+		String pass = myMD5.createPassWord("333");
+		System.out.println("pass = " + pass);
 	}
 	
 }

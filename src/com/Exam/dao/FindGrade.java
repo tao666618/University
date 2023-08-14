@@ -279,8 +279,8 @@ public int getHaveInValue(int userId) {
 
 
     //编写一个方法，使用id号与havaln号在tb_user表中查找N值
-    public int getNForIdAndHavaIn(int userId, int havaIn) {
-        String strSql = "SELECT N FROM tb_user WHERE id=? AND havaIn=?";
+    public int getNForIdAndHavaIn(int userId, int havaIn,String subject) {
+        String strSql = "SELECT N FROM tb_user WHERE id=? AND havaIn=? AND subject=?";
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         int NValue = -1; // 默认值，表示查找失败
@@ -289,6 +289,7 @@ public int getHaveInValue(int userId) {
             pstmt = conn.prepareStatement(strSql);
             pstmt.setInt(1, userId);
             pstmt.setInt(2, havaIn);
+            pstmt.setString(3, subject);
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
