@@ -96,7 +96,37 @@ public class MyFindUserDao {
         }
         return user;
     }
-
+    public User getUserForN(User user) {
+        String strSql = "select * from tb_user where N=?";  //从名为tb_user的数据库表中根据id字段查询用户信息。
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            pstmt = conn.prepareStatement(strSql);
+            pstmt.setInt(1, user.getId());
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                user.setId(rs.getInt("id"));
+                user.setUserType(rs.getInt("UserType"));
+                user.setUserName(rs.getString("UserName"));
+                user.setPassWord(rs.getString("PassWord"));
+                user.setHaveIn(rs.getInt("havaIn"));
+                user.setSubject(rs.getString("subject"));
+                user.setN(rs.getInt("N"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) {
+                    rs.close();
+                    pstmt.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return user;
+    }
 //查找用户表中最大的id号
 
     /**

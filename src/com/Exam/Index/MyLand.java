@@ -198,7 +198,7 @@ public class MyLand extends javax.swing.JFrame {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			InsertUserDao insertUserDao = new InsertUserDao();
+			InsertUserDao insertUserDao = new InsertUserDao();//
 			insertUserDao.setUserHaveIn(users);
 
 			// 获取用户id

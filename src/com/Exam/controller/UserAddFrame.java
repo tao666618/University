@@ -250,7 +250,7 @@ public class UserAddFrame extends javax.swing.JFrame {
 
                         user.setHaveIn(newValue.equals("是") ? 1 : 0);
 
-                        if (!(findGrade.getHaveInValue(user.getId()) == user.getHaveIn())) {
+                        if (!(findGrade.getHaveInValue(user.getN()) == user.getHaveIn())) {
                             if (dao.updateUserHaveIn2(user)) {
                                 JOptionPane.showMessageDialog(null, "修改成功！", "信息提示框", JOptionPane.WARNING_MESSAGE);
                             }

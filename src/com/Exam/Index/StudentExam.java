@@ -139,7 +139,7 @@ public class StudentExam extends javax.swing.JFrame {
         //将科目的ID传入
         ExamPage.setSubjectID(subjectID);
         java.io.File file = new java.io.File("save.txt");
-        try {
+        try {//这个try作用是判断是否有save.txt文件，如果没有则创建一个
             java.io.FileInputStream in = new java.io.FileInputStream(file);
             byte byt[] = new byte[1024];
             int len = in.read(byt);

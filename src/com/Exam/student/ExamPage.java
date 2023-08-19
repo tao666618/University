@@ -230,7 +230,7 @@ public class ExamPage extends javax.swing.JFrame implements Runnable {
         studentNamejLabel.setText("考生姓名：");
         java.io.File file = new java.io.File("save.txt");
         java.io.FileInputStream in;
-        try {
+        try {//读取文件中的id
             in = new java.io.FileInputStream(file);
             byte byt[] = new byte[1024];
             int len = in.read(byt);
@@ -395,8 +395,8 @@ public class ExamPage extends javax.swing.JFrame implements Runnable {
             subjectjLabel.setText("题：");
             countEm = fin.radowId(st.getJudge_BL()/10,ChDeal.toISO("判断题"));
             Question quest = new Question();
-            quest.setId(countEm[radio]);
-            Question estimation = fin.getQuestion(quest,subjectID);//获取判断题
+            quest.setId(countEm[radio]);//获取题目ID
+            Question estimation = fin.getQuestion1(quest,subjectID);//获取判断题
             judgejTextArea.setColumns(20);
             judgejTextArea.setRows(5);
             judgejTextArea.setText(ChDeal.toChinese(estimation.getQ_subject()));
@@ -899,6 +899,7 @@ public class ExamPage extends javax.swing.JFrame implements Runnable {
             MyFindUserDao findUser = new MyFindUserDao();
             uses = findUser.getUserID(user);// 根据文件读取Id查找数据库用户
             if(!"".equals(uses.getId()) ){
+
                 InsertGrade delGrade = new InsertGrade();
                 delGrade.delGradeDBbean(uses);
 
