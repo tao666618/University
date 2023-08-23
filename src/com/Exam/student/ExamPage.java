@@ -396,7 +396,7 @@ public class ExamPage extends javax.swing.JFrame implements Runnable {
             countEm = fin.radowId(st.getJudge_BL()/10,ChDeal.toISO("判断题"));
             Question quest = new Question();
             quest.setId(countEm[radio]);//获取题目ID
-            Question estimation = fin.getQuestion1(quest,subjectID);//获取判断题
+            Question estimation = fin.getQuestion(quest,subjectID);//获取判断题
             judgejTextArea.setColumns(20);
             judgejTextArea.setRows(5);
             judgejTextArea.setText(ChDeal.toChinese(estimation.getQ_subject()));

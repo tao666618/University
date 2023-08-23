@@ -341,51 +341,51 @@ public class FindQuestionDao {
 	}
 
 	// 根据subject和id号查找问题
-	public Question getQuestion(Question question, String subject) {
-		String strSql = "SELECT * FROM tb_question WHERE id = ? AND subject = ?";
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-			pstmt = conn.prepareStatement(strSql);
-			pstmt.setInt(1, question.getId());
-			pstmt.setString(2, subject);
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				question.setId(rs.getInt("id"));
-				question.setTypeid(rs.getInt("typeid"));
-				question.setQ_subject(rs.getString("q_subject"));
-				question.setQ_answer(rs.getString("q_answer"));
-				question.setOptionA(rs.getString("optionA"));
-				question.setOptionB(rs.getString("optionB"));
-				question.setOptionC(rs.getString("optionC"));
-				question.setOptionD(rs.getString("optionD"));
-				question.setNote(rs.getString("subject"));
-			} else {
-				// If no matching question found, set the question to null
-				question = null;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (pstmt != null) {
-					pstmt.close();
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return question;
-	}
+//	public Question getQuestion(Question question, String subject) {
+//		String strSql = "SELECT * FROM tb_question WHERE id = ? AND subject = ?";
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//
+//		try {
+//			pstmt = conn.prepareStatement(strSql);
+//			pstmt.setInt(1, question.getId());
+//			pstmt.setString(2, subject);
+//			rs = pstmt.executeQuery();
+//
+//			if (rs.next()) {
+//				question.setId(rs.getInt("id"));
+//				question.setTypeid(rs.getInt("typeid"));
+//				question.setQ_subject(rs.getString("q_subject"));
+//				question.setQ_answer(rs.getString("q_answer"));
+//				question.setOptionA(rs.getString("optionA"));
+//				question.setOptionB(rs.getString("optionB"));
+//				question.setOptionC(rs.getString("optionC"));
+//				question.setOptionD(rs.getString("optionD"));
+//				question.setNote(rs.getString("subject"));
+//			} else {
+//				// If no matching question found, set the question to null
+//				question = null;
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				if (rs != null) {
+//					rs.close();
+//				}
+//				if (pstmt != null) {
+//					pstmt.close();
+//				}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		return question;
+//	}
 
 
 	//编写一个方法，根据题目的subject与id号查找问题
-	public Question getQuestion1(Question question,String subject){
+	public Question getQuestion(Question question,String subject){
 		String strSql = "select * from tb_question where id = ? and subject = ?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

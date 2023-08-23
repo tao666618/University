@@ -128,7 +128,7 @@ public class ControllerFrame extends javax.swing.JFrame {// 主控制窗体
 
 		downmessage.setText("2013新师大Android培训-Java案例");/*yezi2013-5-14*/
 
-		jLabel1.setText(" 群 ：199219925 ");/*yezi2013-5-14*/
+		jLabel1.setText("2023年修改");/*yezi2013-5-14*/
 
 		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(
 				jPanel1);
